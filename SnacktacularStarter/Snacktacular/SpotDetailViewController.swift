@@ -15,9 +15,17 @@ class SpotDetailViewController: UIViewController {
     @IBOutlet weak var averageRatingLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    
+    var spot: Spot!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if spot == nil {
+            spot = Spot()
+        }
+        nameField.text = spot.name
+        addressField.text = spot.address
     }
 
     @IBAction func photoButtonPressed(_ sender: UIButton) {
@@ -27,6 +35,7 @@ class SpotDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        print("You saved me!")
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
