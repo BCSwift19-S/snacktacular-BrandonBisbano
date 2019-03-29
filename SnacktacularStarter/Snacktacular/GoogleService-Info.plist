@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>952011724871-cb8jmlf73hr813sc2jm9bov4ob5k2tpr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.952011724871-cb8jmlf73hr813sc2jm9bov4ob5k2tpr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA5nQRPuYst4SpXhV6J1W7DNSGE5IqoQDc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>952011724871</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.bisbano.Snacktacular</string>
+	<key>PROJECT_ID</key>
+	<string>snacktacularr</string>
+	<key>STORAGE_BUCKET</key>
+	<string>snacktacularr.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:952011724871:ios:fb5ff9c35f818a6a</string>
+	<key>DATABASE_URL</key>
+	<string>https://snacktacularr.firebaseio.com</string>
+</dict>
+</plist>
