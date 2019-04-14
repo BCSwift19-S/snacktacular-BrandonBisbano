@@ -19,24 +19,56 @@ class SpotDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     var spot: Spot!
     let regionDistance: CLLocationDistance = 750 // 750 meters (1/2 mile)
     var locationManager: CLLocationManager!
-    var currentLocation: CLLocation! = nil
+    var currentLocation: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide keyboard if we tap outside of a field!!!!! copy and paste-able
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
 //        mapView.delegate = self
         
-        if spot == nil {
+        if spot == nil { // we are adding a new record, fields should be editable
             spot = Spot()
             getLocation()
+            
+            // editable fields should have a border around them
+            nameField.addBorder(width: 0.5, radius: 5.0, color: .black)
+            addressField.addBorder(width: 0.5, radius: 5.0, color: .black)
+            
+        } else { // viewing an existing spot, so editing should be disabled
+            nameField.isEnabled = false
+            addressField.isEnabled = false
+            // disabled fields shouldn't have borders, which they don't here
+            nameField.backgroundColor = UIColor.clear
+            addressField.backgroundColor = UIColor.white // same as clear b/c background is white anyways
+            saveBarButton.title = ""
+            cancelBarButton.title = ""
+            navigationController?.setToolbarHidden(true, animated: true)
         }
-        
+    
         let region = MKCoordinateRegion(center: spot.coordinate, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         mapView.setRegion(region, animated: true)
+        updateUserInterface()
+    }
+    
+    @IBAction func textFieldEditingChanged(_ sender: UITextField) {
+        saveBarButton.isEnabled = !(nameField.text == "")
+    }
+    
+    @IBAction func textFieldReturnPressed(_ sender: UITextField) {
+        sender.resignFirstResponder()
+        spot.name = nameField.text!
+        spot.address = addressField.text!
         updateUserInterface()
     }
     
@@ -72,6 +104,7 @@ class SpotDetailViewController: UIViewController {
     }
     
     @IBAction func reviewButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "AddReview", sender: nil)
     }
     
     @IBAction func lookupPlacePressed(_ sender: UIBarButtonItem) {
@@ -101,7 +134,7 @@ extension SpotDetailViewController: GMSAutocompleteViewControllerDelegate {
     // All copied and pasted from the GooglePlaces site.
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        spot.name = place.name!
+        spot.name = place.name ?? ""
         spot.address = place.formattedAddress ?? ""
         spot.coordinate = place.coordinate
         dismiss(animated: true, completion: nil)
@@ -143,13 +176,28 @@ extension SpotDetailViewController: CLLocationManagerDelegate {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
         case .denied:
-            print("I'm sorry - can't show location. User hahs not authorized it.")
+            showAlertToPrivacySettings(title: "User has not authorized location services", message: "Select 'Settings' below to open device settings and enable location services for this app.")
         case .restricted:
-            print("Access denied. Likely parental controls are restricting location services in this app.")
+            showAlert(title: "Location services denied", message: "It may be that parental controls are restricting location use in this app")
         }
     }
     
-    private func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func showAlertToPrivacySettings(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+            print("Something went wrong getting the UIApplicationOpenSettingsURLString")
+            return
+        }
+        let settingsActions = UIAlertAction(title: "Settings", style: .default) { value in
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(settingsActions)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         handleLocationAuthorizationStatus(status: status)
     }
     
@@ -177,5 +225,9 @@ extension SpotDetailViewController: CLLocationManagerDelegate {
             self.spot.address = address
             self.updateUserInterface()
         })
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to get user location.")
     }
 }

@@ -27,6 +27,10 @@ class Spot: NSObject, MKAnnotation {
         return coordinate.latitude
     }
     
+    var location: CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
     var title: String? {
         return name
     }
