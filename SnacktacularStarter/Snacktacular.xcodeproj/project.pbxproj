@@ -26,6 +26,7 @@
 		40B97BAB2263DDAD005C393F /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B97BAA2263DDAD005C393F /* Reviews.swift */; };
 		40B97BAD2263F0D2005C393F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B97BAC2263F0D2005C393F /* Photo.swift */; };
 		40B97BAF2263F0E2005C393F /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B97BAE2263F0E2005C393F /* Photos.swift */; };
+		40B97BD522690B96005C393F /* SnackUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B97BD422690B96005C393F /* SnackUser.swift */; };
 		86B232976F8EF8FF34F2DD07 /* Pods_Snacktacular.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDE72DBE1BD0B29478F296C /* Pods_Snacktacular.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		40B97BAA2263DDAD005C393F /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		40B97BAC2263F0D2005C393F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		40B97BAE2263F0E2005C393F /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		40B97BD422690B96005C393F /* SnackUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackUser.swift; sourceTree = "<group>"; };
 		8CDE72DBE1BD0B29478F296C /* Pods_Snacktacular.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snacktacular.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A407BFA48D53364081AC4D3A /* Pods-Snacktacular.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snacktacular.debug.xcconfig"; path = "Target Support Files/Pods-Snacktacular/Pods-Snacktacular.debug.xcconfig"; sourceTree = "<group>"; };
 		D1075ADE2A60A7C314B9D362 /* Pods-Snacktacular.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snacktacular.release.xcconfig"; path = "Target Support Files/Pods-Snacktacular/Pods-Snacktacular.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				3E8390DF206597F600512DEA /* AppDelegate.swift */,
+				40B97BD422690B96005C393F /* SnackUser.swift */,
 				40455F48224EBBA700193A78 /* Spot.swift */,
 				40455F4A224EBC8600193A78 /* Spots.swift */,
 				40B97BA82263CAB1005C393F /* Review.swift */,
@@ -334,6 +337,7 @@
 				3E0F960E2065AB6400AE450D /* SpotReviewsTableViewCell.swift in Sources */,
 				40B97BA72262C487005C393F /* ReviewTableViewController.swift in Sources */,
 				40B97BA92263CAB1005C393F /* Review.swift in Sources */,
+				40B97BD522690B96005C393F /* SnackUser.swift in Sources */,
 				40B97BA52262ABB5005C393F /* UIView+addBorder.swift in Sources */,
 				3E0F960A20659D9000AE450D /* SpotsTableViewCell.swift in Sources */,
 				40455F49224EBBA700193A78 /* Spot.swift in Sources */,
