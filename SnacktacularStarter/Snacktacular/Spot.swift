@@ -71,7 +71,7 @@ class Spot: NSObject, MKAnnotation {
     func saveData(completed: @escaping (Bool) -> ()) {
         let db = Firestore.firestore()
         // grab the userID
-        guard let postingUserID = (Auth.auth().currentUser?.uid) else {// do you have a current user? if you do, let's get the userID.
+        guard let postingUserID = (Auth.auth().currentUser?.uid) else { // do you have a current user? if you do, let's get the userID.
             print("*** ERROR: Could not save data because we don't have a valid postingUserID.")
             return completed(false)
         }
@@ -98,6 +98,7 @@ class Spot: NSObject, MKAnnotation {
                     completed(false)
                 } else {
                     print("^^^ New document created with ref ID \(ref?.documentID ?? "unknown").")
+                    self.documentID = ref!.documentID
                     completed(true)
                 }
             }
